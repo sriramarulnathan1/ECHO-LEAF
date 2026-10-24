@@ -1,0 +1,16 @@
+.echo-evervault-demo { position: relative; z-index: 1; display: flex; width: min(430px,100%); min-height: 490px; flex-direction: column; align-items: flex-start; margin: auto; padding: 20px; border: 1px solid rgba(220,232,255,.2); border-radius: 25px; background: linear-gradient(145deg,rgba(10,19,35,.85),rgba(5,9,20,.89)); box-shadow: 0 28px 90px rgba(0,0,0,.55),0 0 45px rgba(87,160,255,.12),inset 0 1px rgba(255,255,255,.08); backdrop-filter: blur(16px); }
+.echo-evervault-corner { position: absolute; z-index: 3; width: 22px; height: 22px; color: #c7d2e8; }
+.echo-evervault-corner--tl { top: -11px; left: -11px; }.echo-evervault-corner--tr { top: -11px; right: -11px; }.echo-evervault-corner--bl { bottom: -11px; left: -11px; }.echo-evervault-corner--br { right: -11px; bottom: -11px; }
+.echo-evervault-surface { position: relative; display: grid; width: 100%; min-height: 300px; flex: 1; place-items: center; overflow: hidden; border: 1px solid rgba(170,194,240,.1); border-radius: 18px; background: radial-gradient(circle at 50% 50%,rgba(23,51,71,.7),rgba(6,12,25,.45) 65%); cursor: crosshair; isolation: isolate; }
+.echo-evervault-surface::before { position: absolute; inset: 0; z-index: 1; background: radial-gradient(220px circle at var(--pointer-x) var(--pointer-y),rgba(57,228,159,.2),transparent 70%); opacity: 0; content: ''; transition: opacity .4s; }
+.echo-evervault-surface:hover::before { opacity: 1; }
+.echo-evervault-code { position: absolute; inset: 0; overflow: hidden; color: rgba(111,245,183,.68); font: 700 11px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace; overflow-wrap: anywhere; opacity: 0; -webkit-mask-image: radial-gradient(220px circle at var(--pointer-x) var(--pointer-y),#000 0%,transparent 75%); mask-image: radial-gradient(220px circle at var(--pointer-x) var(--pointer-y),#000 0%,transparent 75%); transition: opacity .35s; }
+.echo-evervault-surface:hover .echo-evervault-code { opacity: .9; }
+.echo-evervault-orb { position: relative; display: grid; width: 158px; aspect-ratio: 1; place-items: center; border: 1px solid rgba(166,209,255,.35); border-radius: 50%; background: radial-gradient(circle at 36% 28%,rgba(128,180,255,.35),rgba(12,26,49,.86) 66%); box-shadow: 0 0 45px rgba(82,157,255,.2),inset 0 0 36px rgba(91,226,170,.12); transition: transform .35s ease,box-shadow .35s ease; }
+.echo-evervault-surface:hover .echo-evervault-orb { transform: scale(1.06); box-shadow: 0 0 65px rgba(82,157,255,.35),inset 0 0 46px rgba(91,226,170,.22); }
+.echo-evervault-orb span { color: #f3f6ff; font-size: 17px; font-weight: 800; letter-spacing: .16em; }
+.echo-evervault-demo h1 { margin: 21px 0 8px; color: #f3f6ff; font-size: 19px; font-weight: 700; letter-spacing: -.02em; }
+.echo-evervault-demo p { margin: 0; color: #aab7d2; font-size: 13px; line-height: 1.55; }
+.echo-evervault-badge { margin-top: 16px; padding: 4px 10px; border: 1px solid rgba(170,194,240,.2); border-radius: 999px; color: #dce5fa; font-size: 11px; }
+@media (max-width: 480px) { .echo-evervault-demo { min-height: 440px; padding: 16px; }.echo-evervault-surface { min-height: 260px; } }
+@media (prefers-reduced-motion: reduce) { .echo-evervault-orb,.echo-evervault-surface::before,.echo-evervault-code { transition: none; } }

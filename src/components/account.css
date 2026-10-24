@@ -1,0 +1,36 @@
+.echoleaf-account-page { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; overflow: auto; padding: 88px 24px 64px; color: #eff6f2; background: #04060f; font-family: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; isolation: isolate; }
+.echoleaf-account-earth { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
+.echoleaf-account-shade { position: absolute; z-index: 0; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 48%,rgba(4,6,15,.25) 0%,rgba(4,6,15,.57) 48%,rgba(4,6,15,.86) 100%),linear-gradient(180deg,rgba(4,6,15,.48),rgba(4,6,15,.2) 45%,rgba(4,6,15,.76)); }
+.echoleaf-account-brand { position: absolute; z-index: 3; top: 28px; left: max(24px,calc((100vw - 1180px)/2)); color: #f3f6ff; font-size: 18px; font-weight: 800; letter-spacing: .16em; text-decoration: none; }
+.echoleaf-account-switch { position: absolute; z-index: 3; top: 24px; right: max(24px,calc((100vw - 1180px)/2)); display: flex; gap: 6px; padding: 4px; border: 1px solid rgba(150,175,230,.18); border-radius: 999px; background: rgba(16,24,48,.7); }
+.echoleaf-account-switch a { padding: 8px 13px; border: 1px solid transparent; border-radius: 999px; background: rgba(129,151,190,.1); color: #aebbd5; font-size: 12px; text-decoration: none; transition: color .2s,background .2s,border-color .2s,box-shadow .2s; }
+.echoleaf-account-switch a.is-active { border-color: rgba(93,240,168,.4); background: linear-gradient(180deg,#5af0ae,#26ce88); color: #032018; box-shadow: 0 5px 18px rgba(49,218,147,.28); }
+.echoleaf-account-switch a:not(.is-active):hover { border-color: rgba(168,190,232,.35); background: rgba(129,151,190,.2); color: #f3f6ff; }
+.echoleaf-account-switch a:focus-visible { outline: 2px solid #baffd9; outline-offset: 2px; }
+.echoleaf-account-footer { position: absolute; z-index: 3; bottom: 20px; color: #6b7796; font-size: 11px; letter-spacing: .08em; text-align: center; }
+.echoleaf-account-page .echo-signup-card { position: relative; z-index: 2; isolation: isolate; border-color: rgba(158,190,255,.25); background: linear-gradient(145deg,rgba(11,19,37,.88),rgba(5,10,22,.91)); box-shadow: 0 28px 100px rgba(0,0,0,.58),0 0 55px rgba(71,141,255,.12),inset 0 1px 0 rgba(255,255,255,.08); backdrop-filter: blur(18px); transition: transform .3s ease,border-color .3s ease,box-shadow .3s ease; }
+.echoleaf-account-page .echo-signup-card::before { position: absolute; z-index: -1; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(240px circle at var(--pointer-x,50%) var(--pointer-y,50%),rgba(62,240,154,.15),transparent 72%); opacity: 0; content: ''; transition: opacity .35s ease; }
+.echoleaf-account-page .echo-signup-card:hover { transform: translateY(-4px); border-color: rgba(93,240,168,.42); box-shadow: 0 34px 100px rgba(0,0,0,.62),0 0 60px rgba(93,240,168,.13),inset 0 1px 0 rgba(255,255,255,.1); }
+.echoleaf-account-page .echo-signup-card:hover::before { opacity: 1; }
+.echoleaf-welcome-card { position: relative; z-index: 1; width: min(844px,100%); padding: clamp(46px,7vw,88px) clamp(24px,5vw,64px); overflow: hidden; border: 1px solid rgba(150,175,230,.25); border-radius: 30px; background: linear-gradient(125deg,rgba(11,23,36,.82),rgba(9,15,31,.91) 72%); box-shadow: 0 28px 100px rgba(0,0,0,.55),0 0 60px rgba(104,174,255,.13),inset 0 1px 0 rgba(255,255,255,.07); text-align: center; backdrop-filter: blur(16px); transition: transform .35s ease,border-color .35s ease,box-shadow .35s ease,background .35s ease; }
+.echoleaf-welcome-card:hover { transform: translateY(-7px); border-color: rgba(93,240,168,.46); background: linear-gradient(125deg,rgba(13,30,42,.89),rgba(9,15,31,.94) 72%); box-shadow: 0 36px 110px rgba(0,0,0,.62),0 0 72px rgba(93,240,168,.16),inset 0 1px 0 rgba(255,255,255,.1); }
+.echoleaf-welcome-card::before { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 0%,rgba(101,213,255,.16),transparent 50%),radial-gradient(ellipse at 18% 100%,rgba(93,240,168,.1),transparent 38%); content: ''; }
+.echoleaf-welcome-eyebrow,.echoleaf-welcome-card h1,.echoleaf-welcome-card p,.echoleaf-welcome-actions { position: relative; }
+.echoleaf-welcome-eyebrow { color: #4be6a2; font-size: 13px; font-weight: 800; letter-spacing: .16em; }
+.echoleaf-welcome-card h1 { margin: 20px 0 18px; color: #f4f6ff; font-size: clamp(38px,6vw,58px); font-weight: 800; letter-spacing: -.055em; line-height: 1.08; }
+.echoleaf-welcome-card p { max-width: 620px; margin: 0 auto; color: #aab7d2; font-size: clamp(15px,2vw,19px); line-height: 1.6; }
+.echoleaf-welcome-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 34px; }
+.echoleaf-welcome-actions a { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; gap: 10px; padding: 0 25px; border-radius: 999px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform .2s,box-shadow .2s,background .2s; }
+.echoleaf-welcome-primary { background: linear-gradient(180deg,#5af0ae,#26ce88); box-shadow: 0 10px 30px -8px rgba(93,240,168,.48); color: #032018; }
+.echoleaf-welcome-secondary { border: 1px solid rgba(150,175,230,.24); background: rgba(255,255,255,.045); color: #eef2ff; }
+.echoleaf-welcome-actions a:hover { transform: translateY(-3px); box-shadow: 0 13px 35px rgba(69,222,163,.24); }
+.echoleaf-welcome-actions a:focus-visible { outline: 2px solid #baffd9; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .echoleaf-welcome-card,.echoleaf-welcome-actions a { transition: none; } }
+.ascend-account-actions { display: flex; flex-shrink: 0; align-items: center; gap: 10px; }
+.ascend-user-email { max-width: 190px; overflow: hidden; color: #f3f6ff; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.ascend-account-actions > .ascend-btn { min-height: 40px; padding: 9px 15px; font-size: 13px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.ascend-account-actions > .ascend-btn:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 0 22px rgba(93,240,168,.38),0 12px 30px -8px rgba(93,240,168,.55),inset 0 1px 0 rgba(255,255,255,.42); }
+.ascend-account-actions > .ascend-btn:active { transform: translateY(0) scale(.97); }
+.ascend-account-actions > .ascend-btn:focus-visible { outline: 2px solid #baffd9; outline-offset: 3px; }
+@media (max-width: 720px) { .ascend-account-actions { margin-left: auto; } }
+@media (max-width: 480px) { .echoleaf-account-page { padding: 88px 16px 66px; } .echoleaf-account-brand { top: 20px; left: 16px; font-size: 15px; } .echoleaf-account-switch { top: 15px; right: 16px; } .echoleaf-account-footer { right: 16px; left: 16px; line-height: 1.5; } .echoleaf-welcome-card { padding: 42px 22px; border-radius: 23px; } .echoleaf-welcome-eyebrow { font-size: 10px; letter-spacing: .12em; } .echoleaf-welcome-card h1 { font-size: 36px; } .echoleaf-welcome-card p { font-size: 15px; } .echoleaf-welcome-actions a { width: 100%; } .ascend-account-actions { gap: 6px; } .ascend-account-actions > .ascend-btn { min-height: 38px; padding: 8px 10px; font-size: 12px; } }

@@ -1,0 +1,32 @@
+.echo-signup-card { width: min(448px,100%); max-height: calc(100dvh - 150px); overflow-y: auto; padding: 32px; border: 1px solid rgba(150,175,230,.2); border-radius: 22px; background: linear-gradient(145deg,rgba(18,28,45,.97),rgba(7,13,22,.97)); box-shadow: 0 25px 80px rgba(0,0,0,.55),0 0 0 1px rgba(93,240,168,.04); }
+.echo-radar-mini { position: relative; width: 118px; height: 118px; margin: -14px auto 12px; overflow: hidden; border-radius: 50%; background: radial-gradient(circle,rgba(62,240,154,.08),rgba(4,6,15,.18) 72%,transparent); box-shadow: 0 0 30px rgba(62,240,154,.1); }
+.echo-radar-mini::before,.echo-radar-mini::after { position: absolute; z-index: 0; inset: 5px; border: 1px solid rgba(62,240,154,.2); border-radius: 50%; pointer-events: none; content: ''; }
+.echo-radar-mini::before { background: repeating-radial-gradient(circle,transparent 0 14px,rgba(62,240,154,.18) 15px 16px); }
+.echo-radar-mini::after { border: 0; background: conic-gradient(from 0deg,transparent 0deg 300deg,rgba(62,240,154,.02) 320deg,rgba(62,240,154,.28) 358deg,transparent 360deg); animation: echo-radar-spin 4.5s linear infinite; }
+.echo-radar-mini .radar-container { z-index: 1; border-radius: 50%; }
+@keyframes echo-radar-spin { to { transform: rotate(360deg); } }
+.echo-signup-card h1 { margin: 0; color: #f3f6ff; font-size: 22px; font-weight: 700; letter-spacing: -.03em; line-height: 1.25; }
+.echo-signup-card > p { margin: 9px 0 25px; color: #9aa6c4; font-size: 13px; line-height: 1.5; }
+.echo-signup-card form { display: grid; gap: 15px; }
+.echo-name-row { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.echo-form-field { display: flex; min-width: 0; flex-direction: column; gap: 7px; color: #dce4f7; font-size: 12px; font-weight: 600; }
+.echo-form-field input { width: 100%; height: 42px; padding: 0 12px; border: 1px solid rgba(150,175,230,.2); border-radius: 9px; outline: none; background: rgba(4,6,15,.6); color: #f3f6ff; font: inherit; font-size: 13px; transition: border-color .2s,box-shadow .2s,background .2s; }
+.echo-form-field input::placeholder { color: #6b7796; }
+.echo-form-field input:hover { border-color: rgba(93,240,168,.4); }
+.echo-form-field input:focus { border-color: #3ef09a; background: rgba(4,6,15,.85); box-shadow: 0 0 0 3px rgba(62,240,154,.12),0 0 18px rgba(62,240,154,.1); }
+.echo-submit { display: flex; height: 42px; align-items: center; justify-content: center; gap: 9px; margin-top: 4px; border: 1px solid rgba(255,255,255,.1); border-radius: 9px; background: linear-gradient(115deg,#20bd77,#3ef09a); color: #04130d; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; transition: transform .2s,box-shadow .2s,filter .2s; }
+.echo-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(62,240,154,.24); filter: brightness(1.06); }
+.echo-submit:active { transform: scale(.98); }
+.echo-submit:disabled { cursor: wait; opacity: .72; transform: none; box-shadow: none; }
+.echo-submit:focus-visible,.echo-social-button:focus-visible { outline: 2px solid #baffd9; outline-offset: 3px; }
+.echo-divider { display: flex; align-items: center; margin: 22px 0; }
+.echo-divider::before,.echo-divider::after { height: 1px; flex: 1; background: linear-gradient(90deg,transparent,rgba(150,175,230,.22)); content: ''; }
+.echo-divider::after { background: linear-gradient(90deg,rgba(150,175,230,.22),transparent); }
+.echo-divider span { padding: 0 12px; color: #6b7796; font-size: 10px; text-transform: uppercase; }
+.echo-social-list { display: grid; gap: 9px; }
+.echo-social-button { display: flex; height: 40px; align-items: center; gap: 11px; padding: 0 12px; border: 1px solid rgba(150,175,230,.16); border-radius: 9px; background: rgba(255,255,255,.035); color: #dce4f7; font: inherit; font-size: 12px; cursor: pointer; transition: border-color .2s,background .2s,transform .2s; }
+.echo-social-button:hover { transform: translateY(-1px); border-color: rgba(93,240,168,.4); background: rgba(93,240,168,.07); }
+.echo-social-button svg { width: 16px; height: 16px; }
+.echo-social-mark { display: grid; width: 16px; height: 16px; place-items: center; border-radius: 50%; background: #3ef09a; color: #03130c; font-size: 10px; font-weight: 800; }
+.echo-auth-message { margin: 14px 0 0; color: #ffb9a8; font-size: 12px; line-height: 1.5; }
+@media (max-width: 480px) { .echo-signup-card { padding: 24px 20px; max-height: calc(100dvh - 142px); } .echo-signup-card h1 { font-size: 20px; } .echo-name-row { gap: 8px; } }
