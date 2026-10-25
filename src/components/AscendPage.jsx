@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import TerraDusk from './TerraDusk.tsx';
+import RadarLogo from './RadarLogo.jsx';
 import SpectralParticles from './originkit/ui/hero-38/particle-simulation.tsx';
 import { EvervaultCard } from './ui/evervault-card.jsx';
 import './ascend.css';
+
+const forbitDashboardUrl = '/forbit/';
 
 const xStops = [{ p: 0, v: 0 }, { p: .32, v: -3.1 }, { p: .64, v: 3.2 }, { p: 1, v: 0 }];
 const yStops = [{ p: 0, v: -4.5 }, { p: .32, v: .55 }, { p: .64, v: .45 }, { p: 1, v: .15 }];
@@ -44,7 +47,7 @@ const bars = [62, 88, 47, 95, 71, 80, 58];
 const funnel = [['Tree Canopy', 90], ['Forest Loss', 72], ['Radar Signal', 48], ['Optical Signal', 34]];
 const stats = [['128 ha', 'Area Destroyed'], ['96.4%', 'ML Detection Confidence'], ['Mar 15 – Apr 15', 'Date Interval'], ['0.91', 'Sentinel-1 Radar Confirmation']];
 
-export default function AscendPage({ onOpenOrigin }) {
+export default function AscendPage({ onOpenOrigin, authUser, onSignOut }) {
   const [progress, setProgress] = useState(0);
   useEffect(() => {
     const scroller = document.querySelector('.ascend-route');
@@ -104,6 +107,7 @@ export default function AscendPage({ onOpenOrigin }) {
           hover={{ reach: 28, lift: 48, damping: 58 }}
           rotation={narrowScreen ? 0 : 90}
           mirrorX
+          pointerLocal={false}
           style={{
             position: 'absolute',
             left: '50%',
@@ -120,20 +124,20 @@ export default function AscendPage({ onOpenOrigin }) {
       <div className="ascend-content" id="top">
         <header className="ascend-hero">
           <nav className="ascend-nav">
-            <a className="ascend-brand" href="#top"><span>▲</span> ECHOLEAF</a>
+            <a className="ascend-brand" href="#top"><RadarLogo className="ascend-radar-logo" /> ECHO LEAF</a>
             <div className="ascend-nav-links"><a href="#features">Regions</a><a href="#solutions">Detection</a><a href="#cta">Alerts</a><a href="#footer">About</a></div>
-            <div className="ascend-account-actions"><EvervaultCard text="Login" href="/login" className="ascend-btn ascend-btn-logged-out" /><a className="ascend-btn ascend-btn-logged-out" href="/signup">Sign Up</a></div>
+            <div className="ascend-account-actions">{authUser ? <><span className="ascend-user-email" title={authUser.email}>{authUser.email}</span><button className="ascend-btn ascend-btn-primary" type="button" onClick={onSignOut}>Sign Out</button></> : <><EvervaultCard text="Login" href="/login" className="ascend-btn ascend-btn-logged-out" /><a className="ascend-btn ascend-btn-logged-out" href="/signup">Sign Up</a></>}</div>
           </nav>
           <div className="ascend-hero-inner">
             <h1 className="ascend-title" data-reveal style={{ '--rd': '60ms' }}>Hear the Echo<br/>of Every Leaf</h1>
             <p className="ascend-sub" data-reveal style={{ '--rd': '180ms' }}>EchoLeaf uses satellite radar and optical data, powered by machine learning, to detect illegal forest clearing the moment it happens.</p>
-            <div className="ascend-actions" data-reveal style={{ '--rd': '300ms' }}><a className="ascend-btn ascend-btn-primary" href="#features">Launch Dashboard <Icon name="arrow"/></a><a className="ascend-btn ascend-btn-outline" href="#solutions">Timeline Comparison</a></div>
+            <div className="ascend-actions" data-reveal style={{ '--rd': '300ms' }}><a className="ascend-btn ascend-btn-primary" href={forbitDashboardUrl}>Launch Dashboard <Icon name="arrow"/></a><a className="ascend-btn ascend-btn-outline" href="#solutions">Timeline Comparison</a></div>
           </div>
           <div className="ascend-logos" data-reveal style={{ '--rd': '420ms' }}><span>Hypnexis Hackathon - Manipal University Jaipur</span><div>{['Keonjhar, Odisha', 'Hasdeo Arand', 'Similipal', 'Saranda Forest', 'Sentinel-1 SAR', 'Sentinel-2 Optical'].map((logo) => <b key={logo}>{logo}</b>)}</div></div>
         </header>
 
         <section className="ascend-section ascend-features" id="features">
-          <div className="ascend-section-head"><span className="ascend-eyebrow">Sentinel-1 Radar &amp; Sentinel-2 Optical</span><h2 data-reveal style={{ '--rd': '80ms' }}>Select Forest Region</h2><p data-reveal style={{ '--rd': '160ms' }}>Regional datasets grouped by training, frozen test, and stress-test splits.</p></div>
+          <div className="ascend-section-head"><span className="ascend-eyebrow">Sentinel-1 Radar &amp; Sentinel-2 Optical</span><h2 data-reveal style={{ '--rd': '80ms' }}>Select Forest Region</h2><p data-reveal style={{ '--rd': '160ms' }}>Active surveillance zones across India's critical forest ecosystems, monitored with dual-sensor satellite intelligence.</p></div>
           <div className="ascend-feature-grid">{features.map(([icon, title, copy], i) => <article className="ascend-card" data-reveal style={{ '--rd': `${i * 90}ms` }} key={title}><div className="ascend-card-icon"><Icon name={icon}/></div><h3>{title}</h3>{copy && <p>{copy}</p>}</article>)}</div>
         </section>
 
@@ -146,10 +150,10 @@ export default function AscendPage({ onOpenOrigin }) {
         </section>
 
         <section className="ascend-section ascend-cta" id="cta">
-          <div className="ascend-cta-card"><span className="ascend-eyebrow" data-reveal style={{ '--rd': '60ms' }}>Hypnexis Hackathon - Manipal University Jaipur</span><h2 data-reveal style={{ '--rd': '140ms' }}>Hear the Echo of Every Leaf</h2><p data-reveal style={{ '--rd': '220ms' }}>EchoLeaf uses satellite radar and optical data, powered by machine learning, to detect illegal forest clearing the moment it happens.</p><div className="ascend-actions" data-reveal style={{ '--rd': '300ms' }}><a className="ascend-btn ascend-btn-primary" href="#features">Launch Dashboard <Icon name="arrow"/></a><a className="ascend-btn ascend-btn-outline" href="#solutions">Zoom to Defect</a></div></div>
-          <footer className="ascend-footer" id="footer"><div><a className="ascend-brand" href="#top"><span>▲</span> ECHOLEAF</a><p>Satellite-based forest destruction monitoring.</p></div><div className="ascend-footer-cols"><div><b>Product</b><a href="#features">Forest Regions</a><a href="#solutions">Detection</a><a href="#cta">Monitoring</a></div><div><b>Company</b><a href="#footer">About</a><a href="#footer">Hypnexis</a><a href="#footer">Manipal University Jaipur</a></div><div><b>Data</b><a href="#footer">Sentinel-1 Radar</a><a href="#footer">Sentinel-2 Optical</a><a href="#footer">ML Surveillance</a></div></div></footer>
+          <div className="ascend-cta-card"><span className="ascend-eyebrow" data-reveal style={{ '--rd': '60ms' }}>Hypnexis Hackathon - Manipal University Jaipur</span><h2 data-reveal style={{ '--rd': '140ms' }}>Hear the Echo of Every Leaf</h2><p data-reveal style={{ '--rd': '220ms' }}>EchoLeaf uses satellite radar and optical data, powered by machine learning, to detect illegal forest clearing the moment it happens.</p><div className="ascend-actions" data-reveal style={{ '--rd': '300ms' }}><a className="ascend-btn ascend-btn-primary" href={forbitDashboardUrl}>Launch Dashboard <Icon name="arrow"/></a><a className="ascend-btn ascend-btn-outline" href="#solutions">Zoom to Defect</a></div></div>
+          <footer className="ascend-footer" id="footer"><div><a className="ascend-brand" href="#top"><RadarLogo className="ascend-radar-logo" /> ECHO LEAF</a><p>Satellite-based forest destruction monitoring.</p></div><div className="ascend-footer-cols"><div><b>Product</b><a href="#features">Forest Regions</a><a href="#solutions">Detection</a><a href="#cta">Monitoring</a></div><div><b>Company</b><a href="#footer">About</a><a href="#footer">Hypnexis</a><a href="#footer">Manipal University Jaipur</a></div><div><b>Data</b><a href="#footer">Sentinel-1 Radar</a><a href="#footer">Sentinel-2 Optical</a><a href="#footer">ML Surveillance</a></div></div></footer>
           <p className="ascend-copyright">EchoLeaf © 2026 | Built for Hypnexis at Manipal University Jaipur | Powered by Sentinel-1 &amp; Sentinel-2 satellite data</p>
-          <button className="ascend-origin-link" onClick={onOpenOrigin}>Launch Dashboard <Icon name="arrow"/></button>
+          <a className="ascend-origin-link" href={forbitDashboardUrl}>Launch Dashboard <Icon name="arrow"/></a>
         </section>
       </div>
       </div>

@@ -28,7 +28,7 @@ export default function EvervaultCardDemo() {
       <Icon className="echo-evervault-corner echo-evervault-corner--br" />
       <div className="echo-evervault-surface" onPointerMove={trackPointer} style={{ '--pointer-x': `${point.x}%`, '--pointer-y': `${point.y}%` }}>
         <div className="echo-evervault-code" aria-hidden="true">{pattern}</div>
-        <div className="echo-evervault-orb"><span>ECHOLEAF</span></div>
+        <div className="echo-evervault-orb"><span>ECHO LEAF</span></div>
       </div>
       <h1>Hear the Echo of Every Leaf</h1>
       <p>EchoLeaf uses satellite radar and optical data to detect forest loss as it happens.</p>

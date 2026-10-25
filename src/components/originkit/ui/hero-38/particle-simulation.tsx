@@ -369,7 +369,7 @@ const HOVER_DEFAULTS = {
 };
 
 function SpectralParticles(props) {
-    const { portraitImage = "https://images.unsplash.com/photo-1659787050050-d5aa2b1ec0dc?q=80&w=1309&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", background = "#000000", density = 50, dotSize = 50, style, rotation = 0, mirrorX = false, } = props;
+    const { portraitImage = "https://images.unsplash.com/photo-1659787050050-d5aa2b1ec0dc?q=80&w=1309&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", background = "#000000", density = 50, dotSize = 50, style, rotation = 0, mirrorX = false, pointerLocal = POINTER_LOCAL, } = props;
     const { reach, lift, damping } = {
         ...HOVER_DEFAULTS,
         ...(props.hover ?? {}),
@@ -631,7 +631,7 @@ function SpectralParticles(props) {
             pointer.current.tx = nx * (rotation === 90 ? cssW / cssH : r.width / r.height);
             pointer.current.ty = ny;
         };
-        const isOutside = (e) => POINTER_LOCAL && e.target !== host;
+        const isOutside = (e) => pointerLocal && e.target !== host;
         const onMouseMove = (e) => {
             if (isOutside(e)) {
                 clearPointer();

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import ParticleSimulation from "./particle-simulation";
+import RadarLogo from "../../../RadarLogo.jsx";
+
+const forbitDashboardUrl = "/forbit/";
 
 export function SectionHero() {
   const [showPanel, setShowPanel] = useState(false);
 
   const downloadChecklist = () => {
-    const text = `ECHOLEAF FOREST MONITORING CHECKLIST\n\n1. Compare the forest canopy across both observation dates.\n2. Review radar and optical signals before confirming change.\n3. Check detected clearing against the satellite observations.\n4. Read the full forest signal around each change.\n5. Confirm the alert before taking action.\n`;
+    const text = `ECHO LEAF FOREST MONITORING CHECKLIST\n\n1. Compare the forest canopy across both observation dates.\n2. Review radar and optical signals before confirming change.\n3. Check detected clearing against the satellite observations.\n4. Read the full forest signal around each change.\n5. Confirm the alert before taking action.\n`;
     const url = URL.createObjectURL(new Blob([text], { type: "text/plain" }));
     const link = document.createElement("a");
     link.href = url;
@@ -18,7 +21,7 @@ export function SectionHero() {
     <div className="hero-38">
       <main className="hero" id="top">
         <header className="nav">
-          <a className="brand" href="#top" aria-label="EchoLeaf home">ECHOLEAF</a>
+          <a className="brand" href="#top" aria-label="Echo Leaf home"><RadarLogo className="hero-radar-logo" /> ECHO LEAF</a>
           <nav className="nav-links" aria-label="Primary navigation">
             <a href="#how">HOW IT WORKS</a>
             <a href="#benchmarks">METRICS</a>
@@ -26,7 +29,7 @@ export function SectionHero() {
           </nav>
           <button className="download-btn" onClick={downloadChecklist}>Download</button>
         </header>
-        <div className="ghost-word" aria-hidden="true">EchoLeaf</div>
+        <div className="ghost-word" aria-hidden="true">Echo Leaf</div>
         <section className="visual" role="img" aria-label="Satellite view of a forest canopy under observation">
           <ParticleSimulation
             portraitImage="/originkit/hero-38/tree.png"
@@ -39,7 +42,7 @@ export function SectionHero() {
         </section>
         <section className="bottom-layout">
           <div className="headline-block">
-            <button className="dark-cta" onClick={() => setShowPanel(true)}><span>Launch Dashboard</span><span className="arrow">↗</span></button>
+            <a className="dark-cta" href={forbitDashboardUrl}><span>Launch Dashboard</span><span className="arrow">↗</span></a>
             <h1>Hear the Echo of<br />Every Leaf</h1>
           </div>
           <p className="intro">EchoLeaf uses satellite radar and optical data, powered by machine learning, to detect illegal forest clearing the moment it happens.</p>
@@ -94,9 +97,9 @@ export function SectionHero() {
           <span className="next-page__eyebrow">Hypnexis Hackathon • Manipal University Jaipur</span>
           <h2 id="closing-page-title">Hear the Echo of Every Leaf</h2>
           <p>EchoLeaf detects illegal forest clearing with Sentinel-1 radar, Sentinel-2 optical data, and machine learning.</p>
-          <a href="#top" className="closing-page__button">Launch Dashboard <span aria-hidden="true">↑</span></a>
+          <a href={forbitDashboardUrl} className="closing-page__button">Launch Dashboard <span aria-hidden="true">↑</span></a>
         </div>
-        <footer className="closing-page__footer"><a className="brand" href="#top">ECHOLEAF</a><span>EchoLeaf © 2026 | Built for Hypnexis at Manipal University Jaipur | Powered by Sentinel-1 &amp; Sentinel-2 satellite data</span></footer>
+        <footer className="closing-page__footer"><a className="brand" href="#top"><RadarLogo className="hero-radar-logo" /> ECHO LEAF</a><span>EchoLeaf © 2026 | Built for Hypnexis at Manipal University Jaipur | Powered by Sentinel-1 &amp; Sentinel-2 satellite data</span></footer>
       </section>
     </div>
   );

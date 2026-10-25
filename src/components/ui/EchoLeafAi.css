@@ -1,0 +1,523 @@
+/* ═══════════════════════════════════════════════
+   EchoLeaf AI — Redesigned Black Gradient Theme
+   ═══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ─── Design tokens ─── */
+:root {
+  --elai-bg:         #000000;
+  --elai-bg-2:       #0a0a0a;
+  --elai-bg-3:       #111111;
+  --elai-border:     rgba(255, 255, 255, 0.08);
+  --elai-border-hi:  rgba(74, 222, 128, 0.35);
+  --elai-text:       #f8fafc;
+  --elai-muted:      #94a3b8;
+  --elai-muted-2:    #64748b;
+  --elai-green:      #4ade80;
+  --elai-green-dim:  rgba(74, 222, 128, 0.12);
+  --elai-cyan:       #22d3ee;
+  --elai-radius:     20px;
+  --elai-font:       'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ─── Floating button (FAB) ─── */
+.elai-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 20px 11px 14px;
+  background: #000;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  border-radius: 9999px;
+  color: #f8fafc;
+  font-family: var(--elai-font);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow:
+    0 0 0 1px rgba(74, 222, 128, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.7),
+    0 0 24px rgba(74, 222, 128, 0.15);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.22s ease;
+  overflow: hidden;
+}
+
+.elai-fab-halo {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 30% 50%, rgba(74, 222, 128, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.elai-fab:hover {
+  transform: translateY(-2px);
+  border-color: rgba(74, 222, 128, 0.6);
+  box-shadow:
+    0 0 0 1px rgba(74, 222, 128, 0.2),
+    0 12px 40px rgba(0, 0, 0, 0.8),
+    0 0 32px rgba(74, 222, 128, 0.25);
+}
+
+.elai-fab:focus-visible {
+  outline: 2px solid var(--elai-green);
+  outline-offset: 3px;
+}
+
+.elai-fab-orb {
+  flex-shrink: 0;
+}
+
+.elai-fab-label {
+  white-space: nowrap;
+}
+
+.elai-fab-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--elai-green);
+  box-shadow: 0 0 8px var(--elai-green);
+  animation: elai-pulse 2.2s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+@keyframes elai-pulse {
+  0%, 100% { opacity: 0.45; transform: scale(0.85); }
+  50%       { opacity: 1;    transform: scale(1.2);  }
+}
+
+/* ─── Panel overlay ─── */
+.elai-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 28px;
+  pointer-events: none;
+}
+
+/* ─── Panel card ─── */
+.elai-panel {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  width: 420px;
+  height: 620px;
+  max-height: calc(100vh - 56px);
+  background: linear-gradient(160deg, #0d0d0d 0%, #000000 60%, #050505 100%);
+  border: 1px solid var(--elai-border);
+  border-radius: var(--elai-radius);
+  box-shadow:
+    0 0 0 1px rgba(74, 222, 128, 0.08),
+    0 24px 80px rgba(0, 0, 0, 0.9),
+    0 0 60px rgba(74, 222, 128, 0.06);
+  overflow: hidden;
+  font-family: var(--elai-font);
+  color: var(--elai-text);
+  animation: elai-up 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes elai-up {
+  from { opacity: 0; transform: translateY(18px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);     }
+}
+
+/* ─── Header ─── */
+.elai-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  flex-shrink: 0;
+}
+
+.elai-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.elai-header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(74, 222, 128, 0.07);
+  border: 1px solid rgba(74, 222, 128, 0.18);
+  flex-shrink: 0;
+}
+
+.elai-header-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.elai-header-sub {
+  margin: 2px 0 0;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--elai-muted);
+  letter-spacing: 0.02em;
+}
+
+.elai-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.elai-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--elai-muted);
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+
+.elai-icon-btn:hover {
+  color: var(--elai-text);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.elai-icon-btn:focus-visible {
+  outline: 2px solid var(--elai-green);
+}
+
+/* ─── Divider ─── */
+.elai-divider {
+  height: 1px;
+  background: var(--elai-border);
+  flex-shrink: 0;
+}
+
+/* ─── Messages ─── */
+.elai-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  scroll-behavior: smooth;
+}
+
+.elai-messages::-webkit-scrollbar { width: 4px; }
+.elai-messages::-webkit-scrollbar-track { background: transparent; }
+.elai-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+/* ─── Welcome screen ─── */
+.elai-welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 8px 8px 0;
+  gap: 12px;
+}
+
+.elai-welcome-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: rgba(74, 222, 128, 0.06);
+  border: 1px solid rgba(74, 222, 128, 0.15);
+  margin-bottom: 4px;
+}
+
+.elai-welcome-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.elai-welcome-desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--elai-muted);
+  max-width: 320px;
+}
+
+/* ─── Starter prompts ─── */
+.elai-starters {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.elai-starter {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--elai-border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-family: var(--elai-font);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--elai-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.4;
+}
+
+.elai-starter:hover {
+  background: var(--elai-green-dim);
+  border-color: rgba(74, 222, 128, 0.3);
+  color: #d1fae5;
+}
+
+.elai-starter:focus-visible {
+  outline: 2px solid var(--elai-green);
+}
+
+/* ─── Message rows ─── */
+.elai-row {
+  display: flex;
+  gap: 9px;
+  align-items: flex-end;
+}
+
+.elai-row--user   { justify-content: flex-end; }
+.elai-row--assistant { justify-content: flex-start; }
+
+.elai-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: rgba(74, 222, 128, 0.07);
+  border: 1px solid rgba(74, 222, 128, 0.15);
+  flex-shrink: 0;
+}
+
+/* ─── Bubbles ─── */
+.elai-bubble {
+  max-width: 80%;
+  padding: 11px 15px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  word-break: break-word;
+  white-space: pre-wrap;
+  font-family: var(--elai-font);
+}
+
+.elai-row--user .elai-bubble {
+  background: linear-gradient(135deg, #166534 0%, #15803d 100%);
+  color: #f0fdf4;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 2px 12px rgba(22, 101, 52, 0.35);
+}
+
+.elai-row--assistant .elai-bubble {
+  background: #111111;
+  border: 1px solid var(--elai-border);
+  color: #e2e8f0;
+  border-bottom-left-radius: 4px;
+}
+
+/* ─── Typing indicator ─── */
+.elai-typing {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 13px 16px !important;
+}
+
+.elai-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--elai-green);
+  animation: elai-bounce 1.35s infinite ease-in-out both;
+}
+.elai-dot:nth-child(1) { animation-delay: -0.32s; }
+.elai-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes elai-bounce {
+  0%, 80%, 100% { transform: scale(0.5); opacity: 0.3; }
+  40%            { transform: scale(1);   opacity: 1;   }
+}
+
+/* ─── Error banner ─── */
+.elai-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 14px 10px;
+  padding: 9px 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 10px;
+  font-size: 12px;
+  color: #fca5a5;
+  flex-shrink: 0;
+}
+
+.elai-error svg { flex-shrink: 0; }
+.elai-error span { flex: 1; }
+
+.elai-error-dismiss {
+  background: none;
+  border: none;
+  color: #fca5a5;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0 2px;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+.elai-error-dismiss:hover { opacity: 1; }
+
+/* ─── Input area ─── */
+.elai-input-wrap {
+  padding: 12px 14px 14px;
+  border-top: 1px solid var(--elai-border);
+  background: #050505;
+  flex-shrink: 0;
+}
+
+.elai-input-form {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.elai-textarea {
+  flex: 1;
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 11px;
+  padding: 10px 13px;
+  font-family: var(--elai-font);
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #ffffff;
+  resize: none;
+  min-height: 42px;
+  max-height: 110px;
+  line-height: 1.45;
+  outline: none;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+
+.elai-textarea:focus {
+  border-color: rgba(74, 222, 128, 0.45);
+  background: #161616;
+}
+
+.elai-textarea::placeholder {
+  color: var(--elai-muted-2);
+}
+
+.elai-textarea:disabled {
+  opacity: 0.5;
+}
+
+.elai-send {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: var(--elai-green);
+  border: none;
+  border-radius: 11px;
+  color: #022c16;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.elai-send:hover:not(:disabled) {
+  background: #86efac;
+  transform: scale(1.06);
+  box-shadow: 0 4px 16px rgba(74, 222, 128, 0.4);
+}
+
+.elai-send:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.elai-send:focus-visible {
+  outline: 2px solid var(--elai-green);
+  outline-offset: 2px;
+}
+
+.elai-hint {
+  margin: 7px 0 0;
+  font-size: 10.5px;
+  color: var(--elai-muted-2);
+  text-align: center;
+  font-family: var(--elai-font);
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 640px) {
+  .elai-fab {
+    bottom: 18px;
+    right: 18px;
+    padding: 10px 17px 10px 12px;
+    font-size: 13px;
+  }
+  .elai-overlay {
+    padding: 0;
+    align-items: stretch;
+  }
+  .elai-panel {
+    width: 100%;
+    height: 100%;
+    max-height: 100dvh;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .elai-panel,
+  .elai-fab,
+  .elai-fab-dot,
+  .elai-dot {
+    animation: none !important;
+    transition: none !important;
+  }
+}

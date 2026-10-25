@@ -44,6 +44,9 @@
 }
 
 .hero-38 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   justify-self: start;
   color: var(--ink);
   font-size: 20px;
@@ -52,6 +55,7 @@
   text-decoration: none;
   letter-spacing: -0.06em;
 }
+.hero-38 .brand .hero-radar-logo { width: 20px; height: 20px; flex: 0 0 auto; }
 
 .hero-38 .nav-links {
   display: flex;

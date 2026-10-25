@@ -26,7 +26,7 @@
 .ascend-shell *, .ascend-shell *::before, .ascend-shell *::after { box-sizing: border-box; }
 .ascend-shell a { color: inherit; text-decoration: none; }
 .ascend-branch-rail { position: absolute; z-index: 3; top: -8vh; left: -11vw; width: clamp(360px,35vw,670px); height: min(116vh,1260px); overflow: visible; border: 0; border-radius: 0; background: transparent; box-shadow: none; backdrop-filter: none; }
-.ascend-branch-rail--right { top: -2vh; right: -12vw; left: auto; }
+.ascend-branch-rail--right { top: -2vh; right: -12vw; left: auto; pointer-events: none; }
 .ascend-branch-rail--wide { top: 15vh; right: 16px; left: 16px; width: auto; height: 150px; border-radius: 16px; }
 .ascend-branch-rail--right.ascend-branch-rail--wide { display: none; }
 .ascend-route { position: absolute; inset: 0; z-index: 1; overflow-y: auto; overscroll-behavior-y: contain; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; }
@@ -40,7 +40,7 @@
 }
 .ascend-nav { width: min(1180px, 100%); margin: 0 auto; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; gap: 26px; }
 .ascend-brand { display: inline-flex; align-items: center; gap: 9px; flex: 0 0 auto; font-size: 19px; font-weight: 800; letter-spacing: .16em; }
-.ascend-brand span { color: var(--asc-accent); font-size: 14px; transform: translateY(-1px); }
+.ascend-brand .ascend-radar-logo { width: 21px; height: 21px; flex: 0 0 auto; color: var(--asc-accent); }
 .ascend-nav-links { display: flex; align-items: center; gap: 30px; color: var(--asc-muted); font-size: 14px; }
 .ascend-nav-links a { transition: color .2s ease; }
 .ascend-nav-links a:hover { color: var(--asc-ink); }

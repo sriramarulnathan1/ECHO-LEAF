@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import AscendPage from './components/AscendPage.jsx';
 import Hero38 from './components/originkit/hero-38.tsx';
 import AccountPage from './components/AccountPage.jsx';
+import EchoLeafAi from './components/ui/EchoLeafAi.jsx';
+import { supabase } from './lib/supabase.js';
 
 const currentPath = () => window.location.pathname.replace(/\/$/, '') || '/';
 const isAccountPath = (path) => path === '/login' || path === '/signup';
@@ -12,6 +14,7 @@ export default function App() {
   const [showHero, setShowHero] = useState(path === '/hero-38');
   const [accountPath, setAccountPath] = useState(isAccountPath(path) ? path : '');
   const [transition, setTransition] = useState('');
+  const [authUser, setAuthUser] = useState(null);
   const heroVisibleRef = useRef(showHero);
   heroVisibleRef.current = showHero;
 
@@ -43,6 +46,37 @@ export default function App() {
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
+  useEffect(() => {
+    let active = true;
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (active) setAuthUser(session?.user ?? null);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setAuthUser(session?.user ?? null);
+    });
+    return () => {
+      active = false;
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    window.history.replaceState({}, '', '/login');
+    setPath('/login');
+    setShowAscend(false);
+    setShowHero(false);
+    setAccountPath('/login');
+  };
+
+  const completeAuth = () => {
+    window.history.replaceState({}, '', '/');
+    setPath('/');
+    setShowAscend(true);
+    setShowHero(false);
+    setAccountPath('');
+  };
+
   const openHero = () => {
     if (path === '/hero-38') return;
     window.history.pushState({}, '', '/hero-38');
@@ -57,6 +91,13 @@ export default function App() {
     if (path === nextPath) return;
     window.history.pushState({}, '', nextPath);
     setPath(nextPath);
+    if (nextPath === '/') {
+      setShowAscend(true);
+      setShowHero(false);
+      setAccountPath('');
+      setTransition('');
+      return;
+    }
     setShowAscend(false);
     setShowHero(false);
     setAccountPath(nextPath);
@@ -72,7 +113,12 @@ export default function App() {
 
   return (
     <main className="page">
-      {showAscend && <AscendPage onOpenOrigin={openHero} />}
+      {showAscend && (
+        <>
+          <AscendPage onOpenOrigin={openHero} authUser={authUser} onSignOut={signOut} />
+          <EchoLeafAi authUser={authUser} />
+        </>
+      )}
       {showHero && (
         <div
           className={`hero-route${transition ? ` hero-route--${transition}` : ''}`}
@@ -81,7 +127,7 @@ export default function App() {
           <Hero38 />
         </div>
       )}
-      {accountPath && <AccountPage mode={accountPath === '/signup' ? 'signup' : 'login'} onNavigate={openAccount} />}
+      {accountPath && <AccountPage mode={accountPath === '/signup' ? 'signup' : 'login'} onNavigate={openAccount} onAuthSuccess={completeAuth} />}
     </main>
   );
 }
